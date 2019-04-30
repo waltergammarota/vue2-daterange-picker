@@ -1,16 +1,21 @@
 <template>
   <div id="app">
-    <demo></demo>
+    <date-range-picker-demo
+            v-if="true"
+    ></date-range-picker-demo>
+    <calendar-demo v-if="true"></calendar-demo>
   </div>
 </template>
 
 <script>
-import Demo from './demo'
+import DateRangePickerDemo from "./demos/DateRangePickerDemo";
+import CalendarDemo from "./demos/CalendarDemo";
 
 export default {
   name: 'app',
   components: {
-    Demo
+    CalendarDemo,
+    DateRangePickerDemo,
   }
 }
 </script>

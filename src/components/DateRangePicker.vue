@@ -34,15 +34,16 @@
                             <i class="fa fa-calendar glyphicon glyphicon-calendar"></i>
                         </div>
                         <div class="calendar-table">
-                            <calendar :monthDate="monthDate"
-                                      :locale="locale"
-                                      :start="start" :end="end"
+                            <calendar :viewDate="monthDate"
+                                      :localeData="locale"
+                                      :startDate="start", :endDate="end"
                                       :minDate="min" :maxDate="max"
                                       :show-dropdowns="showDropdowns"
-                                      @nextMonth="nextMonth" @prevMonth="prevMonth"
                                       @change-month="changeLeftMonth"
-                                      @dateClick="dateClick" @hoverDate="hoverDate"
+                                      @dateClick="dateClick"
+                                      @hoverDate="hoverDate"
                                       :showWeekNumbers="showWeekNumbers"
+                                      :single-date-picker="singleDatePicker"
                             ></calendar>
                         </div>
                         <calendar-time v-if="timePicker"
@@ -62,9 +63,9 @@
                             <i class="fa fa-calendar glyphicon glyphicon-calendar"></i>
                         </div>
                         <div class="calendar-table">
-                            <calendar :monthDate="nextMonthDate"
-                                      :locale="locale"
-                                      :start="start" :end="end"
+                            <calendar :viewDate="nextMonthDate"
+                                      :localeData="locale"
+                                      :startDate="start" :endDate="end"
                                       :minDate="min" :maxDate="max"
                                       :show-dropdowns="showDropdowns"
                                       @nextMonth="nextMonth" @prevMonth="prevMonth"
@@ -112,6 +113,7 @@
   import CalendarRanges from './CalendarRanges'
   import {nextMonth, prevMonth} from './util'
   import {mixin as clickaway} from 'vue-clickaway'
+  import default_locale from './locale'
 
   export default {
     components: {Calendar, CalendarTime, CalendarRanges},
@@ -175,14 +177,10 @@
         default: null,
       },
       startDate: {
-        default () {
-          return new Date()
-        }
+        default: null
       },
       endDate: {
-        default () {
-          return new Date()
-        }
+        default: null
       },
       ranges: {
         type: [Object, Boolean],
@@ -203,20 +201,6 @@
       }
     },
     data () {
-      let default_locale = {
-        direction: 'ltr',
-        format: moment.localeData().longDateFormat('L'),
-        separator: ' - ',
-        applyLabel: 'Apply',
-        cancelLabel: 'Cancel',
-        weekLabel: 'W',
-        customRangeLabel: 'Custom Range',
-        daysOfWeek: moment.weekdaysMin(),
-        monthNames: moment.monthsShort(),
-        firstDay: moment.localeData().firstDayOfWeek()
-      }
-
-      // let data = { locale: _locale }
       let data = {locale: {...default_locale, ...this.localeData}}
 
       let startDate = this.startDate;
@@ -225,14 +209,13 @@
         startDate = this.dateRange.startDate;
         endDate = this.dateRange.endDate;
       }
-
-      data.monthDate = new Date(startDate)
-      data.start = new Date(startDate)
+      data.start = startDate === null ? null : new Date(startDate)
+      data.monthDate = data.start ? data.start : new Date()
       if (this.singleDatePicker) {
         // ignore endDate for singleDatePicker
-        data.end = new Date(startDate)
+        data.end = data.start
       } else {
-        data.end = new Date(endDate)
+        data.end = endDate === null ? null : new Date(endDate)
       }
       data.in_selection = false
       data.open = false
@@ -329,14 +312,14 @@
       clickAway () {
         if (this.open) {
           // reset start and end
-          let startDate = this.startDate;
-          let endDate = this.endDate;
+          let startDate = this.startDate
+          let endDate = this.endDate
           if (this.dateRange !== null) {
-            startDate = this.dateRange.startDate;
-            endDate = this.dateRange.endDate;
+            startDate = this.dateRange.startDate
+            endDate = this.dateRange.endDate
           }
-          this.start = new Date(startDate);
-          this.end = new Date(endDate);
+          this.start = startDate ? new Date(startDate) : null
+          this.end = endDate ? new Date(endDate) : null
           this.open = false
         }
       },
@@ -365,16 +348,28 @@
       },
     },
     computed: {
+      inputDates () {
+        //get values from props (v-model has higher priority)
+        let startDate = this.startDate;
+        let endDate = this.endDate;
+        if (this.dateRange !== null) {
+          startDate = this.dateRange.startDate;
+          endDate = this.dateRange.endDate;
+        }
+
+        return {
+          start: startDate ? new Date(startDate) : null,
+          end: endDate ? new Date(endDate) : null
+        }
+      },
       nextMonthDate () {
         return nextMonth(this.monthDate)
       },
       startText () {
-        // return this.start.toLocaleDateString()
-        return moment(this.start).format(this.locale.format)
+        return this.start === null ? '' : moment(this.start).format(this.locale.format)
       },
       endText () {
-        // return new Date(this.end).toLocaleDateString()
-        return moment(new Date(this.end)).format(this.locale.format)
+        return this.end === null ? '' : moment(new Date(this.end)).format(this.locale.format)
       },
       rangeText () {
         let range = this.startText;
@@ -403,10 +398,10 @@
     },
     watch: {
       startDate (value) {
-        this.start = new Date(value)
+        this.start = this.inputDates.start
       },
       endDate (value) {
-        this.end = new Date(value)
+        this.end = this.inputDates.end
       },
       minDate (value) {
         this.changeMonth(this.monthDate);
@@ -416,12 +411,8 @@
       },
       dateRange (value) {
         if (value) {
-          if (value.startDate) {
-            this.start = new Date(value.startDate);
-          }
-          if (value.endDate) {
-            this.end = new Date(value.endDate);
-          }
+          this.start = this.inputDates.start;
+          this.end = this.inputDates.end;
         }
       }
     }

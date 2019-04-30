@@ -1,65 +1,73 @@
 <template>
-    <table class="table-condensed">
-        <thead>
-        <tr>
-            <th class="prev available" @click="$emit('prevMonth')"><span/></th>
-            <th
-                    v-if="showDropdowns"
-                    :colspan="showWeekNumbers ? 6 : 5"
-                    class="month"
-            >
-                <div class="row mx-1">
-                    <select v-model="month" class="monthselect col">
-                        <option v-for="(m, idx) in months" :key="m" :value="idx">{{m}}</option>
-                    </select>
-                    <select v-model="year" class="yearselect col">
-                        <option v-for="y in years" :key="y" :value="y">{{y}}</option>
-                    </select>
-                </div>
-            </th>
-            <th v-else colspan="5" class="month">{{monthName}} {{year}}</th>
-            <th class="next available" @click="$emit('nextMonth')"><span/></th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr>
-            <th v-if="showWeekNumbers" class="week">{{locale.weekLabel}}</th>
-            <th v-for="weekDay in locale.daysOfWeek" :key="weekDay">{{weekDay}}</th>
-        </tr>
-        <tr
-                v-for="(dateRow, index) in calendar"
-                :key="index"
-        >
-            <td v-if="showWeekNumbers && (index%7 || index===0)" class="week">
-                {{dateRow[0] | weeknumber}}
-            </td>
-            <slot name="date-slot" v-for="(date, idx) in dateRow">
-                <td
-                        :class="dayClass(date)"
-                        @click="$emit('dateClick', date)"
-                        @mouseover="$emit('hoverDate', date)"
-                        :key="idx"
+    <div class="calendar">
+        <table class="table-condensed">
+            <thead>
+            <tr>
+                <th class="prev available" @click="prevMonth"><span/></th>
+                <th
+                        v-if="showDropdowns"
+                        :colspan="showWeekNumbers ? 6 : 5"
+                        class="month"
                 >
-                    {{date | dateNum}}
+                    <div class="month_year_dropdown">
+                        <select v-model="month" class="monthselect">
+                            <option v-for="(m, idx) in months" :key="m" :value="idx">{{m}}</option>
+                        </select>
+                        <select v-model="year" class="yearselect">
+                            <option v-for="y in years" :key="y" :value="y">{{y}}</option>
+                        </select>
+                    </div>
+                </th>
+                <th
+                        v-else
+                        :colspan="showWeekNumbers ? 6 : 5"
+                        class="month">{{monthName}} {{year}}
+                </th>
+                <th class="next available" @click="nextMonth"><span/></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <th v-if="showWeekNumbers" class="week">{{locale.weekLabel}}</th>
+                <th v-for="weekDay in locale.daysOfWeek" :key="weekDay">{{weekDay}}</th>
+            </tr>
+            <tr
+                    v-for="(dateRow, index) in calendar"
+                    :key="index"
+            >
+                <td v-if="showWeekNumbers && (index%7 || index===0)" class="week">
+                    {{dateRow[0] | weeknumber}}
                 </td>
-            </slot>
-        </tr>
-        </tbody>
-    </table>
+                <slot name="date-slot" v-for="(date, idx) in dateRow">
+                    <td
+                            :class="dayClass(date)"
+                            @click="dateClick($event, date)"
+                            @mouseover="mouseOver($event, date)"
+                            :key="idx"
+                    >
+                        {{date | dateNum}}
+                    </td>
+                </slot>
+            </tr>
+            </tbody>
+        </table>
+    </div>
 </template>
 
 <script>
   import moment from 'moment'
+  import default_locale from './locale'
+  import {nextMonth, prevMonth} from "./util";
 
   export default {
     name: 'calendar',
     props: {
-      monthDate: Date,
-      locale: Object,
-      start: Date,
-      end: Date,
+      viewDate: Date,
+      localeData: Object,
       minDate: Date,
       maxDate: Date,
+      startDate: Date,
+      endDate: Date,
       showDropdowns: {
         type: Boolean,
         default: false,
@@ -68,14 +76,78 @@
         type: Boolean,
         default: false,
       },
+      singleDatePicker: {
+        type: Boolean,
+        default: true,
+      },
+      value: {
+        type: [Date, String, Object],
+        default () {
+          return new Date()
+        }
+      }
+    },
+    data () {
+      return {
+        monthDate: this.viewDate || new Date(),
+        start: null,
+        end: null,
+        in_selection: false,
+      }
     },
     methods: {
+      changeMonth (newDate) {
+        this.monthDate = newDate
+
+        this.$emit('change-month', {
+          month: this.monthDate.getMonth(),
+          year: this.monthDate.getFullYear(),
+        });
+      },
+      prevMonth () {
+        this.changeMonth(prevMonth(new Date(this.monthDate.getFullYear(),
+          this.monthDate.getMonth(), 1)));
+      },
+      nextMonth () {
+        this.changeMonth(nextMonth(new Date(this.monthDate.getFullYear(),
+          this.monthDate.getMonth(), 1)));
+      },
+      dateClick($event, date) {
+        if(this.singleDatePicker) {
+          if(!this.value.hasOwnProperty('startDate')) {
+            this.$emit('input', date.toDate())
+          } else {
+            this.$emit('input', { startDate: date.toDate(), endDate: date.toDate() })
+          }
+        } else {
+          if(!this.in_selection) {
+            this.in_selection = true
+            this.start = date.toDate()
+            this.end = date.toDate()
+          } else {
+            this.in_selection = false
+            if(date.isBefore(this.start)) {
+              this.end = this.start
+              this.start = date.toDate()
+            } else {
+              this.end = date.toDate()
+            }
+            this.$emit('input', { startDate: this.start, endDate: this.end })
+          }
+        }
+      },
+      mouseOver ($event, date) {
+        if (!this.singleDatePicker && this.in_selection) {
+          this.end = date.toDate()
+        }
+        this.$emit('hoverDate', date)
+      },
       dayClass (date) {
         let dt = new Date(date)
         dt.setHours(0, 0, 0, 0)
-        let start = new Date(this.start)
+        let start = new Date(this.start.getTime())
         start.setHours(0, 0, 0, 0)
-        let end = new Date(this.end)
+        let end = new Date(this.end.getTime())
         end.setHours(0, 0, 0, 0)
 
         return {
@@ -92,6 +164,9 @@
       }
     },
     computed: {
+      locale () {
+        return {...default_locale, ...this.localeData}
+      },
       monthName () {
         return this.locale.monthNames[this.monthDate.getMonth()]
       },
@@ -100,10 +175,8 @@
           return this.monthDate.getFullYear()
         },
         set (value) {
-          this.$emit('change-month', {
-            month: this.month,
-            year: value,
-          });
+          let newDate = new Date(value, this.month, 1);
+          this.monthDate = newDate
         }
       },
       month: {
@@ -111,10 +184,8 @@
           return this.monthDate.getMonth()
         },
         set (value) {
-          this.$emit('change-month', {
-            month: value,
-            year: this.year,
-          });
+          let newDate = new Date(this.year, value, 1);
+          this.monthDate = newDate
         }
       },
       calendar () {
@@ -155,28 +226,30 @@
         return calendar
       },
       months () {
-        let y = this.maxDate.getFullYear() - this.minDate.getFullYear();
-        if (y < 2) {
-          // get months
-          let months = [];
-          if (y < 1) {
-            for (let i = this.minDate.getMonth(); i <= this.maxDate.getMonth(); i++) {
-              months.push(i);
+        if (this.maxDate && this.minDate) {
+          let y = this.maxDate.getFullYear() - this.minDate.getFullYear();
+          if (y < 2) {
+            // get months
+            let months = [];
+            if (y < 1) {
+              for (let i = this.minDate.getMonth(); i <= this.maxDate.getMonth(); i++) {
+                months.push(i);
+              }
+            } else {
+              for (let i = 0; i <= this.maxDate.getMonth(); i++) {
+                months.push(i);
+              }
+              for (let i = this.minDate.getMonth(); i < 12; i++) {
+                months.push(i);
+              }
             }
-          } else {
-            for (let i = 0; i <= this.maxDate.getMonth(); i++) {
-              months.push(i);
-            }
-            for (let i = this.minDate.getMonth(); i < 12; i++) {
-              months.push(i);
-            }
-          }
 
-          // do filter
-          if (months.length > 0) {
-            return this.locale.monthNames.filter((m, index) => {
-              return months.findIndex(i => i === index) > -1;
-            });
+            // do filter
+            if (months.length > 0) {
+              return this.locale.monthNames.filter((m, index) => {
+                return months.findIndex(i => i === index) > -1;
+              });
+            }
           }
         }
         return this.locale.monthNames;
@@ -185,8 +258,9 @@
         let values = []
         let count = 0
         // for (let i = this.minDate.getFullYear(); i <= this.maxDate.getFullYear() && count <= 20; i++) {
-        for (let i = this.start.getFullYear(); count <= 20; i++) {
-          count ++
+        let year = this.start ? this.start.getFullYear() : new Date().getFullYear()
+        for (let i = year; count <= 20; i++) {
+          count++
           values.push(i - 10)
         }
         return values;
@@ -199,25 +273,134 @@
       weeknumber (value) {
         return value.week()
       }
+    },
+    watch: {
+      startDate: {
+        handler (value) {
+          if(this.value)
+            return
+          this.start = value
+        },
+        immediate: true
+      },
+      endDate: {
+        handler (value) {
+          if(this.value)
+            return
+          this.end = value
+        },
+        immediate: true
+      },
+      value: {
+        handler (input) {
+          if (input.hasOwnProperty('startDate') && input.hasOwnProperty('endDate')) {
+            this.start = input.startDate
+            this.end = this.singleDatePicker ? input.startDate : input.endDate
+          } else if(input instanceof Date && this.singleDatePicker) {
+            this.start = input
+            this.end = input
+          } else if (input instanceof String && this.singleDatePicker) {
+            this.start = new Date(input)
+            this.end = new Date(input)
+          } else if (input === null) {
+          } else {
+            console.error('Wrong input value', input)
+          }
+        },
+        immediate: true
+      },
+      viewDate: {
+        handler (value) {
+          if(!value) {
+            this.monthDate = this.value.hasOwnProperty('startDate') ? this.value.startDate : this.value
+            if(!this.monthDate)
+              this.monthDate = new Date()
+            return
+          }
+          let dt = new Date(value)
+          if (this.monthDate.getFullYear() !== dt.getFullYear() || this.monthDate.getMonth() !== dt.getMonth())
+            this.monthDate = value
+        },
+        immediate: true
+      }
     }
   }
 </script>
 
 <style scoped lang="scss">
-    th,td {
-        padding: 2px;
-        background-color: white;
-    }
+    .calendar table {
+        width: 100%;
+        margin: 0;
+        border-spacing: 0;
+        border-collapse: collapse;
+        min-width: 15rem;
+        max-width: 20rem;
 
-    td.today {
-        font-weight: bold;
-    }
+        .month {
+            text-align: center;
+        }
 
-    td.disabled {
-        pointer-events: none;
-        background-color: #eee;
-        border-radius: 0;
-        opacity: 0.6;
+        th, td {
+            text-align: center;
+            vertical-align: middle;
+            min-width: 32px;
+            width: 32px;
+            height: 24px;
+            line-height: 24px;
+            border-radius: 4px;
+            border: 1px solid transparent;
+            white-space: nowrap;
+            cursor: pointer;
+
+            padding: 2px;
+            background-color: white;
+
+        }
+
+        td.off {
+            background-color: #fff;
+            border-color: transparent;
+            color: #999;
+        }
+
+        td.today {
+            font-weight: bold;
+        }
+
+        td.disabled {
+            pointer-events: none;
+            background-color: #eee;
+            border-radius: 0;
+            opacity: 0.6;
+        }
+
+        td.week, th.week {
+            font-size: 80%;
+            color: #ccc;
+        }
+
+        td.in-range {
+            background-color: #ebf4f8;
+            border-color: transparent;
+            color: #000;
+            border-radius: 0;
+        }
+
+        td.start-date {
+            border-top-left-radius: 4px;
+            border-bottom-left-radius: 4px;
+        }
+
+        td.end-date {
+            border-top-right-radius: 4px;
+            border-bottom-right-radius: 4px;
+        }
+
+        td.active {
+            background-color: #357ebd;
+            border-color: transparent;
+            color: #fff;
+        }
     }
 
     @function str-replace($string, $search, $replace: "") {
@@ -252,6 +435,23 @@
         .fa:hover {
             opacity: 0.6;
         }
+
+        span {
+            color: #fff;
+            border: solid #000;
+            border-width: 0 2px 2px 0;
+            border-radius: 0;
+            display: inline-block;
+            padding: 3px;
+        }
+    }
+
+    .prev span {
+        transform: rotate(135deg);
+    }
+
+    .next span {
+        transform: rotate(-45deg);
     }
 
     .chevron-left {

@@ -1,7 +1,7 @@
 <template>
     <div class="demo container">
         <div class="text-center">
-            <img src="./assets/logo.png">
+            <img src="../assets/logo.png">
 
             <h1>Vue Date Range Picker</h1>
             <p>
@@ -21,13 +21,13 @@
                         <div class="form-group row">
                             <label class="col-sm-4 col-form-label" for="startDate">StartDate</label>
                             <div class="col-sm-8">
-                                <input type="text" class="form-control" id="startDate" v-model="startDate">
+                                <input type="text" class="form-control" id="startDate" v-model="dateRange.startDate">
                             </div>
                         </div>
                         <div class="form-group row">
                             <label class="col-sm-4 col-form-label" for="endDate">EndDate</label>
                             <div class="col-sm-8">
-                                <input type="text" class="form-control" id="endDate" v-model="endDate">
+                                <input type="text" class="form-control" id="endDate" v-model="dateRange.endDate">
                             </div>
                         </div>
                     </div>
@@ -119,8 +119,6 @@
                         <label>Select range: </label>
                         <date-range-picker
                                 :opens="opens"
-                                :startDate="startDate"
-                                :endDate="endDate"
                                 @update="updateValues"
                                 :locale-data="{ firstDay: 1, format: 'DD-MM-YYYY HH:mm:ss' }"
                                 :minDate="minDate" :maxDate="maxDate"
@@ -141,17 +139,22 @@
                 </div>
             </div>
         </div>
+
     </div>
 </template>
 
 <script>
-  import DateRangePicker from './components/DateRangePicker'
+  import DateRangePicker from '../components/DateRangePicker'
+  import CalendarDemo from "./CalendarDemo";
 
   export default {
-    components: {DateRangePicker},
+    components: {CalendarDemo, DateRangePicker},
     name: 'DateRangePickerDemo',
     filters: {
       date (value) {
+        if(value === null) {
+          return 'not selected'
+        }
         let options = {year: 'numeric', month: 'long', day: 'numeric'};
         return Intl.DateTimeFormat('en-US', options).format(value)
       }
@@ -160,17 +163,17 @@
       //                    :locale-data="{ daysOfWeek: [ 'Нд', 'Пн', 'Вт', 'Ср', 'Чт', 'Пт', 'Сб' ] }"
       return {
         opens: 'center',
-        startDate: '2017-09-19',
-        endDate: '2017-10-09',
         minDate: '2016-09-02',
         maxDate: '2019-10-02',
         dateRange: {
+          // startDate: null,
+          // endDate: null,
           startDate: '2017-09-10',
           endDate: '2017-9-20',
         },
         show_ranges: true,
         singleDatePicker: false,
-        timePicker: true,
+        timePicker: false,
         timePicker24Hour: true,
         showDropdowns: true,
         autoApply: false,
@@ -178,10 +181,10 @@
       }
     },
     methods: {
-      updateValues (values) {
-        console.log(values, this.dateRange)
-        this.startDate = values.startDate.toISOString().slice(0, 10)
-        this.endDate = values.endDate.toISOString().slice(0, 10)
+      updateValues (dateRange) {
+        console.log(dateRange)
+        this.dateRange.startDate = dateRange.startDate.toISOString().slice(0, 10)
+        this.dateRange.endDate = dateRange.endDate.toISOString().slice(0, 10)
       }
     }
   }
