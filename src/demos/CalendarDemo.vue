@@ -1,6 +1,6 @@
 <template>
     <div class="container bg-light p-5">
-        <h1>Calendar picker component</h1>
+        <h1>Calendar component</h1>
         <div class="bg-white p-3">
             <fieldset>
                 <legend>Properties</legend>
@@ -11,10 +11,6 @@
                 <div class="form-check">
                     <input type="checkbox" id="showDropdowns" v-model="showDropdowns" class="form-check-input">
                     <label for="showDropdowns" class="form-check-label">showDropdowns</label>
-                </div>
-                <div class="form-check">
-                    <input type="checkbox" id="singleDatePicker" v-model="singleDatePicker" class="form-check-input">
-                    <label for="singleDatePicker" class="form-check-label">singleDatePicker</label>
                 </div>
             </fieldset>
         </div>

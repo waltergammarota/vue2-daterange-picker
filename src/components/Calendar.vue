@@ -82,9 +82,6 @@
       },
       value: {
         type: [Date, String, Object],
-        default () {
-          return new Date()
-        }
       }
     },
     data () {
@@ -113,6 +110,8 @@
           this.monthDate.getMonth(), 1)));
       },
       dateClick($event, date) {
+        //always emit dayClick event
+        this.$emit('dateClick', date)
         if(this.singleDatePicker) {
           if(!this.value.hasOwnProperty('startDate')) {
             this.$emit('input', date.toDate())
@@ -145,9 +144,9 @@
       dayClass (date) {
         let dt = new Date(date)
         dt.setHours(0, 0, 0, 0)
-        let start = new Date(this.start.getTime())
+        let start = new Date(this.start < this.end ? this.start.getTime() : this.end.getTime())
         start.setHours(0, 0, 0, 0)
-        let end = new Date(this.end.getTime())
+        let end = new Date(this.start < this.end ? this.end.getTime() : this.start.getTime())
         end.setHours(0, 0, 0, 0)
 
         return {
@@ -277,32 +276,40 @@
     watch: {
       startDate: {
         handler (value) {
-          if(this.value)
-            return
-          this.start = value
+          if (value <= this.end || this.start === null)
+            this.start = value
+          else {
+            this.start = this.end
+            this.end = value
+          }
         },
         immediate: true
       },
       endDate: {
         handler (value) {
-          if(this.value)
-            return
-          this.end = value
+          if(value >= this.start || this.end === null)
+            this.end = value
+          else {
+            this.end = this.start
+            this.start = value
+          }
         },
         immediate: true
       },
       value: {
         handler (input) {
+          if(input === undefined)
+            return
           if (input.hasOwnProperty('startDate') && input.hasOwnProperty('endDate')) {
             this.start = input.startDate
             this.end = this.singleDatePicker ? input.startDate : input.endDate
-          } else if(input instanceof Date && this.singleDatePicker) {
+          } else if(input instanceof Date) {
             this.start = input
             this.end = input
           } else if (input instanceof String && this.singleDatePicker) {
             this.start = new Date(input)
             this.end = new Date(input)
-          } else if (input === null) {
+          // } else if (input === null) {
           } else {
             console.error('Wrong input value', input)
           }
@@ -358,9 +365,9 @@
         }
 
         td.off {
-            background-color: #fff;
+            background-color: #fff !important;
             border-color: transparent;
-            color: #999;
+            color: #999 !important;
         }
 
         td.today {

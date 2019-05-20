@@ -36,14 +36,17 @@
                         <div class="calendar-table">
                             <calendar :viewDate="monthDate"
                                       :localeData="locale"
-                                      :startDate="start", :endDate="end"
-                                      :minDate="min" :maxDate="max"
+                                      :startDate="start"
+                                      :endDate="end"
+                                      :minDate="min"
+                                      :maxDate="max"
                                       :show-dropdowns="showDropdowns"
+                                      :showWeekNumbers="showWeekNumbers"
+                                      :single-date-picker="false"
+                                      ref="calendar1"
                                       @change-month="changeLeftMonth"
                                       @dateClick="dateClick"
                                       @hoverDate="hoverDate"
-                                      :showWeekNumbers="showWeekNumbers"
-                                      :single-date-picker="singleDatePicker"
                             ></calendar>
                         </div>
                         <calendar-time v-if="timePicker"
@@ -65,13 +68,17 @@
                         <div class="calendar-table">
                             <calendar :viewDate="nextMonthDate"
                                       :localeData="locale"
-                                      :startDate="start" :endDate="end"
-                                      :minDate="min" :maxDate="max"
+                                      :startDate="start"
+                                      :endDate="end"
+                                      :minDate="min"
+                                      :maxDate="max"
                                       :show-dropdowns="showDropdowns"
-                                      @nextMonth="nextMonth" @prevMonth="prevMonth"
-                                      @change-month="changeRightMonth"
-                                      @dateClick="dateClick" @hoverDate="hoverDate"
                                       :showWeekNumbers="showWeekNumbers"
+                                      :single-date-picker="false"
+                                      ref="calendar2"
+                                      @change-month="changeRightMonth"
+                                      @dateClick="dateClick"
+                                      @hoverDate="hoverDate"
                             ></calendar>
                         </div>
                         <calendar-time v-if="timePicker"
@@ -201,7 +208,11 @@
       }
     },
     data () {
-      let data = {locale: {...default_locale, ...this.localeData}}
+      let data = {
+        locale: {...default_locale, ...this.localeData},
+        in_selection: false,
+        open: false
+      }
 
       let startDate = this.startDate;
       let endDate = this.endDate;
@@ -217,8 +228,6 @@
       } else {
         data.end = endDate === null ? null : new Date(endDate)
       }
-      data.in_selection = false
-      data.open = false
 
       // update day names order to firstDay
       if (data.locale.firstDay !== 0) {
@@ -290,6 +299,7 @@
         } else {
           this.start = this.normalizeDatetime(value, this.start);
           this.end = this.normalizeDatetime(value, this.end);
+
           if (!this.singleDatePicker) {
             this.in_selection = true
           } else if (this.autoApply) {
@@ -299,8 +309,10 @@
       },
       hoverDate (value) {
         let dt = this.normalizeDatetime(value, this.end);
-        if (this.in_selection && dt > this.start)
-          this.end = dt
+        if (this.in_selection) {
+          if(dt > this.start)
+            this.end = dt
+        }
       },
       togglePicker () {
         this.open = !this.open
@@ -397,6 +409,15 @@
       },
     },
     watch: {
+      open (value) {
+        if(!value) {
+          this.in_selection = false
+        }
+      },
+      in_selection (value) {
+        this.$refs.calendar1.in_selection = value
+        this.$refs.calendar2.in_selection = value
+      },
       startDate (value) {
         this.start = this.inputDates.start
       },
