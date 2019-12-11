@@ -110,8 +110,8 @@
           // 'in-range': dt >= start && dt <= end,
           'start-date': dt.getTime() === start.getTime(),
           'end-date': dt.getTime() === end.getTime(),
-          disabled: (this.minDate && moment(dt).startOf("day").isBefore(moment(this.minDate).startOf("day")))
-            || (this.maxDate && moment(dt).startOf("day").isAfter(moment(this.maxDate).startOf("day"))),
+          disabled: (this.minDate && dt.getTime() < this.minDate.getTime())
+            || (this.maxDate && dt.getTime() > this.maxDate.getTime()),
         }
         return this.dateFormat ? this.dateFormat(classes, date) : classes
 
@@ -155,7 +155,7 @@
         let lastDay = new Date(year, month, daysInMonth)
         let lastMonth = moment(firstDay).subtract(1, 'month').month()
         let lastYear = moment(firstDay).subtract(1, 'month').year()
-        let daysInLastMonth = moment([lastYear, lastMonth]).daysInMonth()
+        let daysInLastMonth = this.$dateUtil.daysInMonth(lastYear, lastMonth)
 
         let dayOfWeek = firstDay.getDay()
 
@@ -179,6 +179,7 @@
             row++;
           }
           calendar[row][col] = curDate.clone()
+          // calendar[row][col] = curDate.clone()
           curDate.hour(12);
         }
 
