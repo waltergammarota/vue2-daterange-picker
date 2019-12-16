@@ -26,8 +26,7 @@
     "unit": "vue-cli-service test:unit"
   },
   "dependencies": {
-    "vue": "^2.6.10",
-    "vue-clickaway": "^2.2.2"
+    "vue": "^2.6.10"
   },
   "devDependencies": {
     "es6-symbol": "^3.1.3",

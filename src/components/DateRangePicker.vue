@@ -1,5 +1,5 @@
 <template>
-    <div class="vue-daterange-picker">
+    <div class="vue-daterange-picker" @click.stop>
         <div class="form-control reportrange-text" @click="togglePicker(null, true)">
             <!--
               Allows you to change the input which is visible before the picker opens
@@ -239,9 +239,12 @@
         },
       },
       /**
-       * This is the v-model prop which the component uses.
+       * This is the v-model prop which the component uses. This should be an object containing startDate and endDate props.
+       * Each of the props should be a string which can be parsed by Date, or preferably a Date Object.
+       * @default { startDate: null, endDate: null }
        */
       dateRange: { // for v-model
+        type: [Object],
         default: null,
         required: true
       },
@@ -528,7 +531,9 @@
       open: {
         handler (value) {
           if(typeof document === "object")
-            value ? document.body.addEventListener('click', this.clickAway) : document.body.removeEventListener('click', this.clickAway)
+            this.$nextTick(() => {
+              value ? document.body.addEventListener('click', this.clickAway) : document.body.removeEventListener('click', this.clickAway)
+            })
         },
         immediate: true
       }
