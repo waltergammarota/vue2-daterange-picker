@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Date range picker | Vue2 date range picker</title>
+    <meta name="description" content="Vue2 date range picker by Innologica">
+    
+    
+    <link rel="preload" href="/vue2-daterange-picker/assets/css/0.styles.fe319007.css" as="style"><link rel="preload" href="/vue2-daterange-picker/assets/js/app.b8b59b51.js" as="script"><link rel="preload" href="/vue2-daterange-picker/assets/js/6.25d92166.js" as="script"><link rel="preload" href="/vue2-daterange-picker/assets/js/14.bd9b039e.js" as="script"><link rel="preload" href="/vue2-daterange-picker/assets/js/8.ebed36a0.js" as="script"><link rel="preload" href="/vue2-daterange-picker/assets/js/4.b2a10eee.js" as="script"><link rel="preload" href="/vue2-daterange-picker/assets/js/7.0d159e4d.js" as="script"><link rel="preload" href="/vue2-daterange-picker/assets/js/11.e7406789.js" as="script"><link rel="preload" href="/vue2-daterange-picker/assets/js/12.ebf9eca4.js" as="script"><link rel="prefetch" href="/vue2-daterange-picker/assets/js/1.d573ddae.js"><link rel="prefetch" href="/vue2-daterange-picker/assets/js/10.6057f3a9.js"><link rel="prefetch" href="/vue2-daterange-picker/assets/js/13.02ffbce2.js"><link rel="prefetch" href="/vue2-daterange-picker/assets/js/15.e62779cf.js"><link rel="prefetch" href="/vue2-daterange-picker/assets/js/16.296ef91c.js"><link rel="prefetch" href="/vue2-daterange-picker/assets/js/2.ef9a2a17.js"><link rel="prefetch" href="/vue2-daterange-picker/assets/js/3.4d023a67.js"><link rel="prefetch" href="/vue2-daterange-picker/assets/js/9.7846fd94.js">
+    <link rel="stylesheet" href="/vue2-daterange-picker/assets/css/0.styles.fe319007.css">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div class="theme-container"><header class="navbar"><div class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div> <a href="/vue2-daterange-picker/" class="home-link router-link-exact-active router-link-active"><!----> <span class="site-name">Vue2 date range picker</span></a> <div class="links"><div class="search-box"><input aria-label="Search" autocomplete="off" spellcheck="false" value=""> <!----></div> <nav class="nav-links can-hide"><div class="nav-item"><a href="https://github.com/Innologica/vue2-daterange-picker" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  Github
+  <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></div> <!----></nav></div></header> <div class="sidebar-mask"></div> <aside class="sidebar"><nav class="nav-links"><div class="nav-item"><a href="https://github.com/Innologica/vue2-daterange-picker" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  Github
+  <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></div> <!----></nav>  <ul class="sidebar-links"><li><a href="/vue2-daterange-picker/" class="active sidebar-link">Date range picker</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/vue2-daterange-picker/#installation" class="sidebar-link">Installation</a></li><li class="sidebar-sub-header"><a href="/vue2-daterange-picker/#usage" class="sidebar-link">Usage</a></li><li class="sidebar-sub-header"><a href="/vue2-daterange-picker/#example-playground" class="sidebar-link">Example / playground</a></li><li class="sidebar-sub-header"><a href="/vue2-daterange-picker/#props" class="sidebar-link">Props</a></li><li class="sidebar-sub-header"><a href="/vue2-daterange-picker/#events" class="sidebar-link">Events</a></li><li class="sidebar-sub-header"><a href="/vue2-daterange-picker/#slots" class="sidebar-link">Slots</a></li></ul></li><li><a href="/vue2-daterange-picker/advanced/" class="sidebar-link">Advanced</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/vue2-daterange-picker/advanced/#disabled-dates" class="sidebar-link">Disabled dates</a></li></ul></li></ul> </aside> <main class="page"> <div class="theme-default-content content__default"><h1 id="date-range-picker"><a href="#date-range-picker" class="header-anchor">#</a> Date range picker</h1> <blockquote><p>Vue2 date range picker based on https://github.com/dangrossman/bootstrap-daterangepicker (no jQuery)</p></blockquote> <p>Date range picker component for vue made without jQuery dependency. Heavily inspired by bootstrap-daterangepicker.
+The component has NO dependency except vue.</p> <h2 id="installation"><a href="#installation" class="header-anchor">#</a> Installation</h2> <div class="language-sh extra-class"><pre class="language-sh"><code><span class="token function">npm</span> i vue2-daterange-picker --save
+</code></pre></div><p>or</p> <div class="language-sh extra-class"><pre class="language-sh"><code><span class="token function">yarn</span> <span class="token function">add</span> vue2-daterange-picker
+</code></pre></div><p>import to use:</p> <div class="language-JS extra-class"><pre class="language-js"><code><span class="token keyword">import</span> DateRangePicker <span class="token keyword">from</span> <span class="token string">'vue2-daterange-picker'</span>
+</code></pre></div><h2 id="usage"><a href="#usage" class="header-anchor">#</a> Usage</h2> <p>Register the component</p> <div class="language-JS extra-class"><pre class="language-js"><code><span class="token keyword">import</span> DateRangePicker <span class="token keyword">from</span> <span class="token string">'vue2-daterange-picker'</span>
+<span class="token comment">//you need to import the CSS manually (in case you want to override it)</span>
+<span class="token keyword">import</span> <span class="token string">'vue2-daterange-picker/dist/vue2-daterange-picker.css'</span>
+
+<span class="token keyword">export</span> <span class="token keyword">default</span> <span class="token punctuation">{</span>
+    components<span class="token punctuation">:</span> <span class="token punctuation">{</span> DateRangePicker <span class="token punctuation">}</span><span class="token punctuation">,</span>
+<span class="token punctuation">}</span>
+</code></pre></div><div class="language-vue extra-class"><pre class="language-vue"><code>    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>date-range-picker</span>
+            <span class="token attr-name">ref</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>picker<span class="token punctuation">&quot;</span></span>
+            <span class="token attr-name">:opens</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>opens<span class="token punctuation">&quot;</span></span>
+            <span class="token attr-name">:locale-data</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>{ firstDay: 1, format: 'DD-MM-YYYY HH:mm:ss' }<span class="token punctuation">&quot;</span></span>
+            <span class="token attr-name">:minDate</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>minDate<span class="token punctuation">&quot;</span></span> <span class="token attr-name">:maxDate</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>maxDate<span class="token punctuation">&quot;</span></span>
+            <span class="token attr-name">:singleDatePicker</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>singleDatePicker<span class="token punctuation">&quot;</span></span>
+            <span class="token attr-name">:timePicker</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>timePicker<span class="token punctuation">&quot;</span></span>
+            <span class="token attr-name">:timePicker24Hour</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>timePicker24Hour<span class="token punctuation">&quot;</span></span>
+            <span class="token attr-name">:showWeekNumbers</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>showWeekNumbers<span class="token punctuation">&quot;</span></span>
+            <span class="token attr-name">:showDropdowns</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>showDropdowns<span class="token punctuation">&quot;</span></span>
+            <span class="token attr-name">:autoApply</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>autoApply<span class="token punctuation">&quot;</span></span>
+            <span class="token attr-name">v-model</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>dateRange<span class="token punctuation">&quot;</span></span>
+            <span class="token attr-name">@update</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>updateValues<span class="token punctuation">&quot;</span></span>
+            <span class="token attr-name">@toggle</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>checkOpen<span class="token punctuation">&quot;</span></span>
+            <span class="token attr-name">:linkedCalendars</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>linkedCalendars<span class="token punctuation">&quot;</span></span>
+            <span class="token attr-name">:dateFormat</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>dateFormat<span class="token punctuation">&quot;</span></span>
+    <span class="token punctuation">&gt;</span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>template</span> <span class="token attr-name"><span class="token namespace">v-slot:</span>input</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>picker<span class="token punctuation">&quot;</span></span><span class="token style-attr language-css"><span class="token attr-name"> <span class="token attr-name">style</span></span><span class="token punctuation">=&quot;</span><span class="token attr-value"><span class="token property">min-width</span><span class="token punctuation">:</span> 350px<span class="token punctuation">;</span></span><span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span>
+            {{ picker.startDate | date }} - {{ picker.endDate | date }}
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>template</span><span class="token punctuation">&gt;</span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>date-range-picker</span><span class="token punctuation">&gt;</span></span>
+</code></pre></div><h2 id="example-playground"><a href="#example-playground" class="header-anchor">#</a> Example / playground</h2> <div class="demo" data-v-42fde642><div class="py-5" data-v-42fde642><div class="form-group" data-v-42fde642><label data-v-42fde642>Select range: </label> <div class="vue-daterange-picker" data-v-1cd3ebdc data-v-42fde642><div class="form-control reportrange-text" data-v-1cd3ebdc><div style="min-width:350px;" data-v-1cd3ebdc data-v-42fde642>
+          December 10, 2019 - December 20, 2019
+        </div></div> <!----></div> <button class="btn btn-info" data-v-42fde642>
+        Clear
+      </button></div></div> <div class="form-row pt-3 bg-light" data-v-42fde642><div class="col-md-6" data-v-42fde642><div class="form-group row" data-v-42fde642><label for="startDate" class="col-sm-4 col-form-label" data-v-42fde642>StartDate</label> <div class="col-sm-8" data-v-42fde642><input type="text" id="startDate" value="2019-12-10" class="form-control" data-v-42fde642></div></div> <div class="form-group row" data-v-42fde642><label for="endDate" class="col-sm-4 col-form-label" data-v-42fde642>EndDate</label> <div class="col-sm-8" data-v-42fde642><input type="text" id="endDate" value="2019-12-20" class="form-control" data-v-42fde642></div></div></div> <div class="col-md-6" data-v-42fde642><div class="form-group row" data-v-42fde642><label for="minDate" class="col-sm-4 col-form-label" data-v-42fde642>minDate</label> <div class="col-sm-8" data-v-42fde642><input type="text" id="minDate" value="2019-05-02 04:00:00" class="form-control" data-v-42fde642></div></div> <div class="form-group row" data-v-42fde642><label for="maxDate" class="col-sm-4 col-form-label" data-v-42fde642>maxDate</label> <div class="col-sm-8" data-v-42fde642><input type="text" id="maxDate" value="2019-12-26 14:00:00" class="form-control" data-v-42fde642></div></div></div></div> <div data-v-42fde642><div class="form-check form-check-inline" data-v-42fde642><input type="radio" name="options" id="option1" value="left" class="form-check-input" data-v-42fde642> <label class="form-check-label" data-v-42fde642>left</label></div> <div class="form-check form-check-inline" data-v-42fde642><input type="radio" name="options" id="option2" value="center" checked="checked" class="form-check-input" data-v-42fde642> <label class="form-check-label" data-v-42fde642>center</label></div> <div class="form-check form-check-inline" data-v-42fde642><input type="radio" name="options" id="option3" value="right" class="form-check-input" data-v-42fde642> <label class="form-check-label" data-v-42fde642>right</label></div> <small class="form-text text-muted" data-v-42fde642>Whether the picker appears aligned to the left, to the right, or
+      centered relative to the HTML element it's attached to
+    </small></div> <div data-v-42fde642><div class="form-check" data-v-42fde642><input type="checkbox" id="singleDatePicker" class="form-check-input" data-v-42fde642> <label for="singleDatePicker" class="form-check-label" data-v-42fde642>
+        singleDatePicker
+      </label></div> <div class="form-check" data-v-42fde642><input type="checkbox" id="showWeekNumbers" checked="checked" class="form-check-input" data-v-42fde642> <label for="showWeekNumbers" class="form-check-label" data-v-42fde642>
+        showWeekNumbers
+      </label> <small class="form-text text-muted" data-v-42fde642>
+        Show the ISO weeknumbers on the side of the calendar
+      </small></div> <div class="form-check" data-v-42fde642><input type="checkbox" id="timePicker" checked="checked" class="form-check-input" data-v-42fde642> <label for="timePicker" class="form-check-label" data-v-42fde642>
+        timePicker
+      </label> <small class="form-text text-muted" data-v-42fde642>
+        Allow the user to select time.
+      </small></div> <div class="form-check" data-v-42fde642><input type="checkbox" id="timePicker24Hour" checked="checked" class="form-check-input" data-v-42fde642> <label for="timePicker24Hour" class="form-check-label" data-v-42fde642>
+        timePicker24Hour
+      </label> <small class="form-text text-muted" data-v-42fde642>
+        The time selection uses the 24 hour format
+      </small></div> <div class="form-check" data-v-42fde642><input type="checkbox" id="showDropdowns" checked="checked" class="form-check-input" data-v-42fde642> <label for="showDropdowns" class="form-check-label" data-v-42fde642>
+        showDropdowns
+      </label> <small class="form-text text-muted" data-v-42fde642>
+        Show dropdown/input for faster selection of year and month.
+      </small></div> <div class="form-check" data-v-42fde642><input type="checkbox" id="autoApply" class="form-check-input" data-v-42fde642> <label for="autoApply" class="form-check-label" data-v-42fde642>
+        autoApply
+      </label> <small class="form-text text-muted" data-v-42fde642>
+        Automatically select the range once the second date is selected ( otherwise you need to
+        click the apply button)
+      </small></div> <div class="form-check" data-v-42fde642><input type="checkbox" id="show_ranges" checked="checked" class="form-check-input" data-v-42fde642> <label for="show_ranges" class="form-check-label" data-v-42fde642>
+        show ranges
+      </label> <small class="form-text text-muted" data-v-42fde642>
+        You can set this to false in order to hide the ranges selection. Otherwise it is an object
+        with key/value.
+      </small></div> <div class="form-check" data-v-42fde642><input type="checkbox" id="linkedCalendars" checked="checked" class="form-check-input" data-v-42fde642> <label for="linkedCalendars" class="form-check-label" data-v-42fde642>
+        linkedCalendars
+      </label> <small class="form-text text-muted" data-v-42fde642>
+        Each calendar has separate navigation
+      </small></div> <div class="form-check" data-v-42fde642><input type="checkbox" id="alwaysShowCalendars" checked="checked" class="form-check-input" data-v-42fde642> <label for="alwaysShowCalendars" class="form-check-label" data-v-42fde642>
+        alwaysShowCalendars
+      </label> <small class="form-text text-muted" data-v-42fde642>
+        Defaults to true. If set to false only the ranges will be visible if one of them is selected. If no range
+        is selected or you have clicked the &quot;Custom ranges&quot; then the calendar selectors are shown.
+      </small></div></div> <div class="pt-5" data-v-42fde642><h5 data-v-42fde642>Override date formatting :</h5> <dt data-v-42fde642>dateFormat: function(classes, date) -
+      <small data-v-42fde642>special prop type function which accepts 2 params:</small></dt> <ul data-v-42fde642><li data-v-42fde642>&quot;classes&quot; - the classes that the component's logic has defined,</li> <li data-v-42fde642>&quot;date&quot; - tha date currently processed.</li></ul> <p data-v-42fde642><b data-v-42fde642>@return:</b> you should return Vue class object which should be applied to the date rendered.</p> <p data-v-42fde642>in the demo this function is used to disable &quot;yesterday&quot; date</p></div></div> <h2 id="props"><a href="#props" class="header-anchor">#</a> Props</h2> <div data-v-7112a9ce><table data-v-7112a9ce><thead data-v-7112a9ce><tr data-v-7112a9ce><th data-v-7112a9ce>Name</th> <th data-v-7112a9ce>Type</th> <th data-v-7112a9ce>Default</th> <th data-v-7112a9ce>Description</th></tr></thead> <tbody data-v-7112a9ce><tr data-v-7112a9ce><td nowrap="nowrap" class="text-sm" data-v-7112a9ce>min-date</td> <td nowrap="nowrap" class="text-sm" data-v-7112a9ce>String, Date</td> <td nowrap="nowrap" class="text-sm" data-v-7112a9ce>null</td> <td style="white-space: pre-wrap" data-v-7112a9ce>minimum date allowed to be selected</td></tr><tr data-v-7112a9ce><td nowrap="nowrap" class="text-sm" data-v-7112a9ce>max-date</td> <td nowrap="nowrap" class="text-sm" data-v-7112a9ce>String, Date</td> <td nowrap="nowrap" class="text-sm" data-v-7112a9ce>null</td> <td style="white-space: pre-wrap" data-v-7112a9ce>maximum date allowed to be selected</td></tr><tr data-v-7112a9ce><td nowrap="nowrap" class="text-sm" data-v-7112a9ce>show-week-numbers</td> <td nowrap="nowrap" class="text-sm" data-v-7112a9ce>Boolean</td> <td nowrap="nowrap" class="text-sm" data-v-7112a9ce>false</td> <td style="white-space: pre-wrap" data-v-7112a9ce>Show the week numbers on the left side of the calendar</td></tr><tr data-v-7112a9ce><td nowrap="nowrap" class="text-sm" data-v-7112a9ce>linked-calendars</td> <td nowrap="nowrap" class="text-sm" data-v-7112a9ce>Boolean</td> <td nowrap="nowrap" class="text-sm" data-v-7112a9ce>true</td> <td style="white-space: pre-wrap" data-v-7112a9ce>Each calendar has separate navigation when this is false</td></tr><tr data-v-7112a9ce><td nowrap="nowrap" class="text-sm" data-v-7112a9ce>single-date-picker</td> <td nowrap="nowrap" class="text-sm" data-v-7112a9ce>Boolean</td> <td nowrap="nowrap" class="text-sm" data-v-7112a9ce>false</td> <td style="white-space: pre-wrap" data-v-7112a9ce>Allows you to select only one date (instead of range). This will hide the ranges with different start/end</td></tr><tr data-v-7112a9ce><td nowrap="nowrap" class="text-sm" data-v-7112a9ce>show-dropdowns</td> <td nowrap="nowrap" class="text-sm" data-v-7112a9ce>Boolean</td> <td nowrap="nowrap" class="text-sm" data-v-7112a9ce>false</td> <td style="white-space: pre-wrap" data-v-7112a9ce>Show the dropdowns for month and year selection above the calendars</td></tr><tr data-v-7112a9ce><td nowrap="nowrap" class="text-sm" data-v-7112a9ce>time-picker</td> <td nowrap="nowrap" class="text-sm" data-v-7112a9ce>Boolean</td> <td nowrap="nowrap" class="text-sm" data-v-7112a9ce>false</td> <td style="white-space: pre-wrap" data-v-7112a9ce>Show the dropdowns for time (hour/minute) selection below the calendars</td></tr><tr data-v-7112a9ce><td nowrap="nowrap" class="text-sm" data-v-7112a9ce>time-picker-increment</td> <td nowrap="nowrap" class="text-sm" data-v-7112a9ce>Number</td> <td nowrap="nowrap" class="text-sm" data-v-7112a9ce>5</td> <td style="white-space: pre-wrap" data-v-7112a9ce>Determines the increment of minutes in the minute dropdown</td></tr><tr data-v-7112a9ce><td nowrap="nowrap" class="text-sm" data-v-7112a9ce>time-picker24-hour</td> <td nowrap="nowrap" class="text-sm" data-v-7112a9ce>Boolean</td> <td nowrap="nowrap" class="text-sm" data-v-7112a9ce>true</td> <td style="white-space: pre-wrap" data-v-7112a9ce>Use 24h format for the time</td></tr><tr data-v-7112a9ce><td nowrap="nowrap" class="text-sm" data-v-7112a9ce>time-picker-seconds</td> <td nowrap="nowrap" class="text-sm" data-v-7112a9ce>Boolean</td> <td nowrap="nowrap" class="text-sm" data-v-7112a9ce>false</td> <td style="white-space: pre-wrap" data-v-7112a9ce>Allows you to select seconds except hour/minute</td></tr><tr data-v-7112a9ce><td nowrap="nowrap" class="text-sm" data-v-7112a9ce>auto-apply</td> <td nowrap="nowrap" class="text-sm" data-v-7112a9ce>Boolean</td> <td nowrap="nowrap" class="text-sm" data-v-7112a9ce>false</td> <td style="white-space: pre-wrap" data-v-7112a9ce>Auto apply selected range. If false you need to click an apply button</td></tr><tr data-v-7112a9ce><td nowrap="nowrap" class="text-sm" data-v-7112a9ce>locale-data</td> <td nowrap="nowrap" class="text-sm" data-v-7112a9ce>Object</td> <td nowrap="nowrap" class="text-sm" data-v-7112a9ce>*see below</td> <td style="white-space: pre-wrap" data-v-7112a9ce>Object containing locale data used by the picker. See example below the table</td></tr><tr data-v-7112a9ce><td nowrap="nowrap" class="text-sm required" data-v-7112a9ce>date-range</td> <td nowrap="nowrap" class="text-sm" data-v-7112a9ce>Object</td> <td nowrap="nowrap" class="text-sm" data-v-7112a9ce><pre class="language-json">{
+startDate: null,
+endDate: null
+}</pre></td> <td style="white-space: pre-wrap" data-v-7112a9ce>This is the v-model prop which the component uses. This should be an object containing startDate and endDate props.
+Each of the props should be a string which can be parsed by Date, or preferably a Date Object.</td></tr><tr data-v-7112a9ce><td nowrap="nowrap" class="text-sm" data-v-7112a9ce>ranges</td> <td nowrap="nowrap" class="text-sm" data-v-7112a9ce>Object, Boolean</td> <td nowrap="nowrap" class="text-sm" data-v-7112a9ce>*see below</td> <td style="white-space: pre-wrap" data-v-7112a9ce>You can set this to false in order to hide the ranges selection. Otherwise it is an object with key/value. See below</td></tr><tr data-v-7112a9ce><td nowrap="nowrap" class="text-sm" data-v-7112a9ce>opens</td> <td nowrap="nowrap" class="text-sm" data-v-7112a9ce>String</td> <td nowrap="nowrap" class="text-sm" data-v-7112a9ce>center</td> <td style="white-space: pre-wrap" data-v-7112a9ce>which way the picker opens - "center", "left" or "right"</td></tr><tr data-v-7112a9ce><td nowrap="nowrap" class="text-sm" data-v-7112a9ce>date-format</td> <td nowrap="nowrap" class="text-sm" data-v-7112a9ce>Function</td> <td nowrap="nowrap" class="text-sm" data-v-7112a9ce></td> <td style="white-space: pre-wrap" data-v-7112a9ce>function(classes, date) - special prop type function which accepts 2 params:
+"classes" - the classes that the component's logic has defined,
+"date" - tha date currently processed.
+You should return Vue class object which should be applied to the date rendered.</td></tr><tr data-v-7112a9ce><td nowrap="nowrap" class="text-sm" data-v-7112a9ce>always-show-calendars</td> <td nowrap="nowrap" class="text-sm" data-v-7112a9ce>Boolean</td> <td nowrap="nowrap" class="text-sm" data-v-7112a9ce>true</td> <td style="white-space: pre-wrap" data-v-7112a9ce>If set to false and one of the predefined ranges is selected then calendars are hidden.
+If no range is selected or you have clicked the "Custom ranges" then the calendars are shown.</td></tr><tr data-v-7112a9ce><td nowrap="nowrap" class="text-sm" data-v-7112a9ce>date-util</td> <td nowrap="nowrap" class="text-sm" data-v-7112a9ce>Object, String</td> <td nowrap="nowrap" class="text-sm" data-v-7112a9ce>native</td> <td style="white-space: pre-wrap" data-v-7112a9ce>The dateUtil implementation to use. Possible values: native, moment, date-fns.
+If an object is given it must implement all the functions required. See below for
+custom date util object template*</td></tr></tbody></table></div> <ul><li>sample locale data</li></ul> <div class="language-JS extra-class"><pre class="language-js"><code><span class="token punctuation">{</span>
+    direction<span class="token punctuation">:</span> <span class="token string">'ltr'</span><span class="token punctuation">,</span>
+    format<span class="token punctuation">:</span> <span class="token string">'mm/dd/yyyy'</span><span class="token punctuation">,</span>
+    separator<span class="token punctuation">:</span> <span class="token string">' - '</span><span class="token punctuation">,</span>
+    applyLabel<span class="token punctuation">:</span> <span class="token string">'Apply'</span><span class="token punctuation">,</span>
+    cancelLabel<span class="token punctuation">:</span> <span class="token string">'Cancel'</span><span class="token punctuation">,</span>
+    weekLabel<span class="token punctuation">:</span> <span class="token string">'W'</span><span class="token punctuation">,</span>
+    customRangeLabel<span class="token punctuation">:</span> <span class="token string">'Custom Range'</span><span class="token punctuation">,</span>
+    daysOfWeek<span class="token punctuation">:</span> <span class="token punctuation">[</span><span class="token string">'Sun'</span><span class="token punctuation">,</span> <span class="token string">'Mon'</span><span class="token punctuation">,</span> <span class="token string">'Tue'</span><span class="token punctuation">,</span> <span class="token string">'Wed'</span><span class="token punctuation">,</span> <span class="token string">'Thu'</span><span class="token punctuation">,</span> <span class="token string">'Fri'</span><span class="token punctuation">,</span> <span class="token string">'Sat'</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+    monthNames<span class="token punctuation">:</span> <span class="token punctuation">[</span><span class="token string">'Jan'</span><span class="token punctuation">,</span> <span class="token string">'Feb'</span><span class="token punctuation">,</span> <span class="token string">'Mar'</span><span class="token punctuation">,</span> <span class="token string">'Apr'</span><span class="token punctuation">,</span> <span class="token string">'May'</span><span class="token punctuation">,</span> <span class="token string">'Jun'</span><span class="token punctuation">,</span> <span class="token string">'Jul'</span><span class="token punctuation">,</span> <span class="token string">'Aug'</span><span class="token punctuation">,</span> <span class="token string">'Sep'</span><span class="token punctuation">,</span> <span class="token string">'Oct'</span><span class="token punctuation">,</span> <span class="token string">'Nov'</span><span class="token punctuation">,</span> <span class="token string">'Dec'</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+    firstDay<span class="token punctuation">:</span> <span class="token number">0</span>
+<span class="token punctuation">}</span>
+</code></pre></div><ul><li>default ranges object (set to false to hide ranges)</li></ul> <div class="language-JS extra-class"><pre class="language-js"><code><span class="token punctuation">{</span>
+    <span class="token string">'Today'</span><span class="token punctuation">,</span>
+    <span class="token string">'Yesterday'</span><span class="token punctuation">,</span>
+    <span class="token string">'This month'</span><span class="token punctuation">,</span>
+    <span class="token string">'This year'</span><span class="token punctuation">,</span>
+    <span class="token string">'Last week'</span><span class="token punctuation">,</span>
+    <span class="token string">'Last month'</span><span class="token punctuation">,</span>
+<span class="token punctuation">}</span>
+</code></pre></div><ul><li>custom date util object (keep in mind that this can change in the future)</li></ul> <div class="language-js extra-class"><pre class="language-js"><code><span class="token keyword">const</span> DateUtil <span class="token operator">=</span> <span class="token punctuation">{</span>
+  <span class="token comment">/**
+   * Compares if two date1 and date2 are the same with specified granularity(date, month, year)
+   * @param date1
+   * @param date2
+   * @param granularity
+   * @return Boolean returns if the dates are the same with this granularity
+   */</span>
+  isSame<span class="token punctuation">:</span> <span class="token punctuation">(</span>date1<span class="token punctuation">,</span> date2<span class="token punctuation">,</span> granularity <span class="token operator">=</span> <span class="token string">'date'</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">,</span>
+  <span class="token comment">/**
+   * Get number of days in month specified by year and month
+   * @param year
+   * @param month
+   * @return int number of days
+   */</span>
+  <span class="token function-variable function">daysInMonth</span><span class="token punctuation">:</span> <span class="token punctuation">(</span><span class="token parameter">year<span class="token punctuation">,</span> month</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">,</span>
+  <span class="token comment">/**
+   * Return ISO week number for date
+   * @param date
+   * returns int the week number
+   */</span>
+  <span class="token function-variable function">weekNumber</span><span class="token punctuation">:</span> <span class="token punctuation">(</span><span class="token parameter">date</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">,</span>
+  <span class="token comment">/**
+   * Formats the date object with the specified mask.
+   * @see https://github.com/felixge/node-dateformat
+   *
+   * @param date
+   * @param mask
+   * return String the formatted date
+   */</span>
+  <span class="token function-variable function">format</span><span class="token punctuation">:</span> <span class="token punctuation">(</span><span class="token parameter">date<span class="token punctuation">,</span> mask</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">,</span>
+  <span class="token comment">/**
+   * Get next month from date
+   * @param date
+   * @return Date the first day of the next month
+   */</span>
+  <span class="token function-variable function">nextMonth</span><span class="token punctuation">:</span> <span class="token punctuation">(</span><span class="token parameter">date</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">,</span>
+  <span class="token comment">/**
+   * Get previous month from date
+   * @param date
+   * @return Date the first day of the previous month
+   */</span>
+  <span class="token function-variable function">prevMonth</span><span class="token punctuation">:</span> <span class="token punctuation">(</span><span class="token parameter">date</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">,</span>
+  <span class="token comment">/**
+   * Validates a date base on date range [min, max]. Keeps the date in the constraint.
+   * @param newDate
+   * @param min
+   * @param max
+   * @return Date the date after it has been checked if it is in the range specified.
+   */</span>
+  <span class="token function-variable function">validateDateRange</span><span class="token punctuation">:</span> <span class="token punctuation">(</span><span class="token parameter">newDate<span class="token punctuation">,</span> min<span class="token punctuation">,</span> max</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">,</span>
+  <span class="token comment">/**
+   * Returns the locale data based on passed options object.
+   * @param options
+   * @return {{cancelLabel: string, applyLabel: string, format: string, daysOfWeek: *, separator: string, customRangeLabel: string, weekLabel: string, direction: string}}
+   */</span>
+  <span class="token function-variable function">localeData</span><span class="token punctuation">:</span> <span class="token punctuation">(</span><span class="token parameter">options</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+    <span class="token keyword">let</span> default_locale <span class="token operator">=</span> <span class="token punctuation">{</span>
+      direction<span class="token punctuation">:</span> <span class="token string">'ltr'</span><span class="token punctuation">,</span>
+      format<span class="token punctuation">:</span> <span class="token string">'mm/dd/yyyy'</span><span class="token punctuation">,</span>
+      separator<span class="token punctuation">:</span> <span class="token string">' - '</span><span class="token punctuation">,</span>
+      applyLabel<span class="token punctuation">:</span> <span class="token string">'Apply'</span><span class="token punctuation">,</span>
+      cancelLabel<span class="token punctuation">:</span> <span class="token string">'Cancel'</span><span class="token punctuation">,</span>
+      weekLabel<span class="token punctuation">:</span> <span class="token string">'W'</span><span class="token punctuation">,</span>
+      customRangeLabel<span class="token punctuation">:</span> <span class="token string">'Custom Range'</span><span class="token punctuation">,</span>
+      daysOfWeek<span class="token punctuation">:</span> <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">,</span><span class="token comment">//days of week (short),</span>
+      monthNames<span class="token punctuation">:</span> <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">,</span><span class="token comment">// month names (short),</span>
+      firstDay<span class="token punctuation">:</span> <span class="token number">0</span>
+    <span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+    <span class="token keyword">return</span> <span class="token punctuation">{</span><span class="token operator">...</span>default_locale<span class="token punctuation">,</span> <span class="token operator">...</span>options <span class="token punctuation">}</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  <span class="token comment">/**
+   * Returns date in the format YYYYMM
+   * @param date
+   * return String the date formatted
+   */</span>
+  <span class="token function-variable function">yearMonth</span><span class="token punctuation">:</span> <span class="token punctuation">(</span><span class="token parameter">date</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span><span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">export</span> <span class="token keyword">default</span> DateUtil
+</code></pre></div><h2 id="events"><a href="#events" class="header-anchor">#</a> Events</h2> <div data-v-0fe8ca76><table data-v-0fe8ca76><thead data-v-0fe8ca76><tr data-v-0fe8ca76><th data-v-0fe8ca76>Event</th> <th data-v-0fe8ca76>Params</th> <th data-v-0fe8ca76>Description</th></tr></thead> <tbody data-v-0fe8ca76><tr data-v-0fe8ca76><td nowrap="nowrap" class="text-sm" data-v-0fe8ca76>hoverDate</td> <td data-v-0fe8ca76><ul data-v-0fe8ca76><li data-v-0fe8ca76><span class="small" data-v-0fe8ca76>(Date) value - the date that is being hovered</span></li></ul></td> <td data-v-0fe8ca76>Emits event when the mouse hovers a date</td></tr><tr data-v-0fe8ca76><td nowrap="nowrap" class="text-sm" data-v-0fe8ca76>toggle</td> <td data-v-0fe8ca76><ul data-v-0fe8ca76><li data-v-0fe8ca76><span class="small" data-v-0fe8ca76>(boolean) open - the current state of the picker</span></li><li data-v-0fe8ca76><span class="small" data-v-0fe8ca76>(Function) togglePicker - function (show, event) which can be used to control the picker. where &quot;show&quot; is the new state and &quot;event&quot; is boolean indicating whether a new event should be raised</span></li></ul></td> <td data-v-0fe8ca76>Emits whenever the picker opens/closes</td></tr><tr data-v-0fe8ca76><td nowrap="nowrap" class="text-sm" data-v-0fe8ca76>update</td> <td data-v-0fe8ca76><ul data-v-0fe8ca76><li data-v-0fe8ca76><span class="small" data-v-0fe8ca76>(json) value - json object containing the dates: {startDate, endDate}</span></li></ul></td> <td data-v-0fe8ca76>Emits when the user selects a range from the picker and clicks &quot;apply&quot; (if autoApply is true).</td></tr></tbody></table></div> <h2 id="slots"><a href="#slots" class="header-anchor">#</a> Slots</h2> <div><div><h3>input</h3> <p style="white-space: pre">Allows you to change the input which is visible before the picker opens
+
+        @param {Date} startDate - current startDate
+        @param {Date} endDate - current endDate
+        @param {object} ranges - object with ranges</p></div><div><h3>ranges</h3> <p style="white-space: pre">Allows you to change the range
+
+            @param {Date} startDate - current startDate
+            @param {Date} endDate - current endDate
+            @param {object} ranges - object with ranges</p></div></div></div> <footer class="page-edit"><!----> <!----></footer> <div class="page-nav"><p class="inner"><!----> <span class="next"><a href="/vue2-daterange-picker/advanced/">Advanced</a>
+      →
+    </span></p></div> </main></div><div class="global-ui"></div></div>
+    <script src="/vue2-daterange-picker/assets/js/app.b8b59b51.js" defer></script><script src="/vue2-daterange-picker/assets/js/6.25d92166.js" defer></script><script src="/vue2-daterange-picker/assets/js/14.bd9b039e.js" defer></script><script src="/vue2-daterange-picker/assets/js/8.ebed36a0.js" defer></script><script src="/vue2-daterange-picker/assets/js/4.b2a10eee.js" defer></script><script src="/vue2-daterange-picker/assets/js/7.0d159e4d.js" defer></script><script src="/vue2-daterange-picker/assets/js/11.e7406789.js" defer></script><script src="/vue2-daterange-picker/assets/js/12.ebf9eca4.js" defer></script>
+  </body>
+</html>
